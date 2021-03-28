@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "gilroy";
+  src: url("./fonts/Gilroy-Light.otf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "gilroy";
+  src: url(./fonts/Gilroy-ExtraBold.otf);
+  font-weight: 800;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #361d5a;
+}
+
+header {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+  position: absolute; /*serve para o conteúdo do header ficar tudo dentro dele, e não quebrar errado*/
+  width: calc(
+    100% - 200px
+  ); /*soma calc que está fazendo 100% menos os 200px que são os 100px de padding que colocamos para direita e esquerda*/
+  z-index: 1; /*profundide*/
+}
+
+header h1 {
+  color: white;
+  text-transform: uppercase;
+  font-family: "gilroy";
+  font-weight: 800;
+}
+
+header .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+header .dropdown svg {
+  fill: white;
+  width: 32px;
+  cursor: pointer;
+}
+
+header .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #190e2a;
+  min-width: 130px;
+  left: -98px;
+  z-index: 2;
+}
+
+header .dropdown:hover .dropdown-content {
+  display: block;
+}
