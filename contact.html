@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEV.BLOG</title>
+    <title>Contato</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
     <header>
         <h1>dev.blog</h1>
@@ -16,13 +14,12 @@
             <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 16">
                 <g id="icons">
                     <g id="menu">
-                        <path d="M2,12a2,2,0,0,0,2,2H20a2,2,0,0,0,0-4H4A2,2,0,0,0,2,12Z" transform="translate(-2 -4)" />
-                        <path d="M22,6a2,2,0,0,0-2-2H8A2,2,0,0,0,8,8H20A2,2,0,0,0,22,6Z" transform="translate(-2 -4)" />
-                        <path d="M6,18a2,2,0,0,0,2,2H20a2,2,0,0,0,0-4H8A2,2,0,0,0,6,18Z" transform="translate(-2 -4)" />
+                        <path d="M2,12a2,2,0,0,0,2,2H20a2,2,0,0,0,0-4H4A2,2,0,0,0,2,12Z" transform="translate(-2 -4)"/>
+                        <path d="M22,6a2,2,0,0,0-2-2H8A2,2,0,0,0,8,8H20A2,2,0,0,0,22,6Z" transform="translate(-2 -4)"/>
+                        <path d="M6,18a2,2,0,0,0,2,2H20a2,2,0,0,0,0-4H8A2,2,0,0,0,6,18Z" transform="translate(-2 -4)"/>
                     </g>
                 </g>
             </svg>
-
             <div class="dropdown-content">
                 <a href="index.html">Início</a>
                 <a href="#">Publi</a>
@@ -31,20 +28,14 @@
         </div>
     </header>
     <main>
-        <section id="primary-screen">
-            <h1>Front-end</h1>
-            <p>Dicas de ferramentas e como ser um desenvolvedor melhor</p>
-            <a href="">Publi</a>
-        </section>
-        <section id="secondary-screen">
-            <img src="./img/astrounaut.png" alt="Astrounata">
-            <div class="publication">
-                <h1>O que é ser front-end</h1>
-                <p>
-                    O desenvolvedor front-end é responsável pela experiência do usuário dentro de uma aplicação web, é ele quem vai desenhar e desenvolver as páginas com as quais, posteriormente, o usuário irá interagir. 
-
-                </p>
-            </div>
+        <section id="contact">
+            <form onsubmit="eviarEmail(event)">
+                <h1>Contato</h1>
+                <input type="text" name="name" id="name" placeholder="Nome" required>
+                <input type="text" name="email" id="email" placeholder="Email" required>
+                <textarea name="message" id="message" cols="30" rows="10" placeholder="message" required></textarea>
+                <button>Enviar</button>
+            </form>
         </section>
     </main>
     <footer>
@@ -82,6 +73,26 @@
             </a>
         </div>
     </footer>
-</body>
+    <script>
+        function enviarEmail(event) {
+            event.preventDefault();
+            fetch('https://emailer-api.herokuapp.com/sender', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    emailFrom: document.getElementById('email').value,
+                    emailTo: 'eduardoqueiroga2@gmail.com',
+                    name: document.getElementById('name').value,
+                    message: document.getElementById('message').value
+                })
+            })
+                .then(() => alert('Sucesso!'))
+                .catch(() => alert('Erro ao enviar o e-mail!'));
+        }
 
+        
+    </script>
+</body>
 </html>
